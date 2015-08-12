@@ -31,21 +31,21 @@ public class Deck
     // }
 
     // Using Streams :)
-    final List<Object> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
+    final List<String> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
         (number) -> number + suit)).collect(Collectors.toList());
 
     // Implement Shuffle some other way...
     // Collections.shuffle(deckComplete);
     
     while (shuffler.size() != 51) {
-    	int randomizer = rand.nextInt((52 - 1) + 1);
+    	int randomizer = rand.nextInt((51 - 1) + 1);
     	System.out.println(randomizer);
     	if (shuffler.indexOf(randomizer) == -1) {
     		shuffler.add(randomizer);
     	}
     }
     
-    final List<String> deckShuffled = (List<Object>) deckComplete.stream().flatMap((x) -> deckComplete.get(shuffler.get(x)).collect(Collectors.toList()));
+    final List<String> deckShuffled = (List<String>) deckComplete.stream().flatMap((deck) -> deck.forEach(shuffler).collect(Collectors.toList()));
 
     return deckComplete;
   }
