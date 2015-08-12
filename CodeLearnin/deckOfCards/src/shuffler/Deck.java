@@ -12,7 +12,7 @@ public class Deck
   {
 	Random rand = new Random();
 	
-	List<Integer> shuffler = new ArrayList<Integer>();
+	  List<Integer> shuffler = new ArrayList<Integer>();
     List<String> deckNumbers =
         new ArrayList<String>(Arrays.asList("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
             "Jack", "Queen", "King"));
@@ -31,7 +31,7 @@ public class Deck
     // }
 
     // Using Streams :)
-    final List<String> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
+    final List<Object> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
         (number) -> number + suit)).collect(Collectors.toList());
 
     // Implement Shuffle some other way...
@@ -40,10 +40,12 @@ public class Deck
     while (shuffler.size() != 51) {
     	int randomizer = rand.nextInt((52 - 1) + 1);
     	System.out.println(randomizer);
-    	if (shuffler.indexOf(randomizer) != -1) {
+    	if (shuffler.indexOf(randomizer) == -1) {
     		shuffler.add(randomizer);
     	}
     }
+    
+    final List<String> deckShuffled = (List<Object>) deckComplete.stream().flatMap((x) -> deckComplete.get(shuffler.get(x)).collect(Collectors.toList()));
 
     return deckComplete;
   }
