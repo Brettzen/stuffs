@@ -2,14 +2,17 @@ package shuffler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Deck
 {
   public List getDeck()
   {
+	Random rand = new Random();
+	
+	List<Integer> shuffler = new ArrayList<Integer>();
     List<String> deckNumbers =
         new ArrayList<String>(Arrays.asList("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
             "Jack", "Queen", "King"));
@@ -32,7 +35,15 @@ public class Deck
         (number) -> number + suit)).collect(Collectors.toList());
 
     // Implement Shuffle some other way...
-    Collections.shuffle(deckComplete);
+    // Collections.shuffle(deckComplete);
+    
+    while (shuffler.size() != 51) {
+    	int randomizer = rand.nextInt((52 - 1) + 1);
+    	System.out.println(randomizer);
+    	if (shuffler.indexOf(randomizer) != -1) {
+    		shuffler.add(randomizer);
+    	}
+    }
 
     return deckComplete;
   }
