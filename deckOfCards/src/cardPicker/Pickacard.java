@@ -12,7 +12,7 @@ public class Pickacard
 
     List fullDeck = deck.getDeck();
 
-    for (int i = 0; i <= 52; i++)
+    for (int i = 0; i <= 51; i++)
     {
       System.out.println(fullDeck.get(i));
     }

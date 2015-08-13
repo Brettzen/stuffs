@@ -20,23 +20,33 @@ public class Deck
         new ArrayList<String>(
             Arrays.asList(" of Hearts", " of Diamonds", " of Spades", " of Clubs"));
 
+    // int suitCounter = deckSuit.size();
+    // int deckCount = deckNumbers.size();
+    // for (int i = 0; i < suitCounter; i++)
+    // {
+    // for (int j = 0; j < deckCount; j++)
+    // {
+    // deckComplete.add(deckNumbers.get(j) + deckSuit.get(i));
+    // }
+    // }
+
     // Using Streams :)
-     final List<String> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
-     (number) -> number + suit)).collect(Collectors.toList());
+    final List<String> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
+        (number) -> number + suit)).collect(Collectors.toList());
 
     // Implement Shuffle some other way...
     // Collections.shuffle(deckComplete);
     
-    while (shuffler.size() != 52) {
-    	int randomizer = rand.nextInt((52 - 1) + 1);
+    while (shuffler.size() != 51) {
+    	int randomizer = rand.nextInt((51 - 1) + 1);
     	System.out.println(randomizer);
     	if (shuffler.indexOf(randomizer) == -1) {
     		shuffler.add(randomizer);
     	}
     }
+    
+    final List<String> deckShuffled = shuffler.stream().flatMap((card) -> deckComplete.get(card)).collect(Collectores.toList());
 
-      final List<String> shuffledDeck = shuffler.stream((card) -> deckComplete.get(card)).collect(Collectors.toList());
-
-    return shuffledDeck;
+    return deckComplete;
   }
 }
