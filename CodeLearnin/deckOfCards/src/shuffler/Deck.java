@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class Deck
 {
-  public List getDeck()
+  public static List getDeck()
   {
 	Random rand = new Random();
 	
@@ -29,14 +29,35 @@ public class Deck
     
     while (shuffler.size() != 52) {
     	int randomizer = rand.nextInt((52 - 1) + 1);
-    	System.out.println(randomizer);
     	if (shuffler.indexOf(randomizer) == -1) {
     		shuffler.add(randomizer);
     	}
     }
 
-      final List<String> shuffledDeck = shuffler.stream((card) -> deckComplete.get(card)).collect(Collectors.toList());
+      final List<String> shuffledDeck = shuffler.stream().map(deckComplete::get).collect(Collectors.toList());
 
-    return shuffledDeck;
+      return shuffledDeck;
+  }
+
+  public List<String> reshuffle() {
+      List<String> deck = Deck.getDeck();
+      List<Integer> firstHalf = new ArrayList<>();
+      List<Integer> secondHalf = new ArrayList<>();
+
+      for (int i = 0; i <= 51; i++) {
+          if (i < 26) {
+              firstHalf.add(i);
+          } else {
+              secondHalf.add(i);
+          }
+      }
+
+      final List<String> firstHalfOfDeck = firstHalf.stream().map(deck::get).collect(Collectors.toList());
+      final List<String> secondHalfOfDeck = secondHalf.stream().map(deck::get).collect(Collectors.toList());
+
+      List<String> reshuffledDeck = new ArrayList<>(firstHalfOfDeck);
+      reshuffledDeck.addAll(secondHalfOfDeck);
+
+      return reshuffledDeck;
   }
 }
