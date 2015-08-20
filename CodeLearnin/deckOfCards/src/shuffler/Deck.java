@@ -6,58 +6,53 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class Deck
-{
-  public static List getDeck()
-  {
-	Random rand = new Random();
-	
-	  List<Integer> shuffler = new ArrayList<Integer>();
-    List<String> deckNumbers =
-        new ArrayList<String>(Arrays.asList("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "Jack", "Queen", "King"));
-    List<String> deckSuit =
-        new ArrayList<String>(
-            Arrays.asList(" of Hearts", " of Diamonds", " of Spades", " of Clubs"));
+public class Deck {
+	public static List<String> getDeck() {
+		List<Integer> shuffler = new ArrayList<Integer>();
+		List<String> deckNumbers = new ArrayList<String>(
+				Arrays.asList("Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"));
+		List<String> deckSuit = new ArrayList<String>(
+				Arrays.asList(" of Hearts", " of Diamonds", " of Spades", " of Clubs"));
 
-    // Using Streams :)
-     final List<String> deckComplete = deckSuit.stream().flatMap((suit) -> deckNumbers.stream().map(
-     (number) -> number + suit)).collect(Collectors.toList());
+		final List<String> deckComplete = deckSuit.stream()
+				.flatMap((suit) -> deckNumbers.stream().map((number) -> number + suit)).collect(Collectors.toList());
 
-    // Implement Shuffle some other way...
-    // Collections.shuffle(deckComplete);
-    
-    while (shuffler.size() != 52) {
-    	int randomizer = rand.nextInt((52 - 1) + 1);
-    	if (shuffler.indexOf(randomizer) == -1) {
-    		shuffler.add(randomizer);
-    	}
-    }
+		return deckComplete;
+	}
 
-      final List<String> shuffledDeck = shuffler.stream().map(deckComplete::get).collect(Collectors.toList());
+	public static List<String> shuffle() {
+		final List<String> deck = getDeck();
+		final List<Integer> firstHalf = new ArrayList<>();
+		final List<Integer> secondHalf = new ArrayList<>();
+		final List<String> reshuffledDeck = new ArrayList<>();
 
-      return shuffledDeck;
-  }
+		for (int i = 0; i <= 51; i++) {
+			if (i < 26) {
+				firstHalf.add(i);
+			} else {
+				secondHalf.add(i);
+			}
+		}
 
-  public List<String> reshuffle() {
-      List<String> deck = Deck.getDeck();
-      List<Integer> firstHalf = new ArrayList<>();
-      List<Integer> secondHalf = new ArrayList<>();
+		final List<String> firstHalfOfDeck = firstHalf.stream().map(deck::get).collect(Collectors.toList());
+		final List<String> secondHalfOfDeck = secondHalf.stream().map(deck::get).collect(Collectors.toList());
+		
+		int halfDeckChooser = 0;
+		int j = 0;
+		for(int i = 0; i < deck.size(); i++) {
+			if (halfDeckChooser == 0) {
+				reshuffledDeck.add(firstHalfOfDeck.get(j));
+				halfDeckChooser = 1;
+			}
+			else if (halfDeckChooser == 1) {
+				reshuffledDeck.add(secondHalfOfDeck.get(j));
+				halfDeckChooser = 0;
+				j++;
+			}
+		}
 
-      for (int i = 0; i <= 51; i++) {
-          if (i < 26) {
-              firstHalf.add(i);
-          } else {
-              secondHalf.add(i);
-          }
-      }
+//		final List<String> reshuffledDeck = deck.stream().forEach((card) -> firstHalfOfDeck.get(card)).collect(Collectors.toList());
 
-      final List<String> firstHalfOfDeck = firstHalf.stream().map(deck::get).collect(Collectors.toList());
-      final List<String> secondHalfOfDeck = secondHalf.stream().map(deck::get).collect(Collectors.toList());
-
-      List<String> reshuffledDeck = new ArrayList<>(firstHalfOfDeck);
-      reshuffledDeck.addAll(secondHalfOfDeck);
-
-      return reshuffledDeck;
-  }
+		return reshuffledDeck;
+	}
 }
