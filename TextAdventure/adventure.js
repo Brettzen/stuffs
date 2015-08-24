@@ -67,33 +67,35 @@ newResponse = function() {
 		}
 	} else if(responseCheck == "look") {
 		document.getElementById("game-text").innerHTML = gameText + "<li>" + lookText + "</li>";
-	} else if(responseCheck == "look " + obj1[0] || responseCheck == "look at the " + obj1[0] || responseCheck == "look at " + obj1[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj1[1] + "</li>";	
-	} else if(responseCheck == "look " + obj2[0] || responseCheck == "look at the " + obj2[0] || responseCheck == "look at " + obj2[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj2[1] + "</li>";
-	} else if(responseCheck == "look " + obj3[0] || responseCheck == "look at the " + obj3[0] || responseCheck == "look at " + obj3[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj3[1] + "</li>";
-	} else if(responseCheck == "look " + obj4[0] || responseCheck == "look at the " + obj4[0] || responseCheck == "look at " + obj4[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj4[1] + "</li>";
-	} else if(responseCheck == "look " + obj5[0] || responseCheck == "look at the " + obj5[0] || responseCheck == "look at " + obj5[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj5[1] + "</li>";
-	} else if(responseCheck == "look " + obj6[0] || responseCheck == "look at the " + obj6[0] || responseCheck == "look at " + obj6[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj6[1] + "</li>";
-	} else if(responseCheck == "look " + obj7[0] || responseCheck == "look at the " + obj7[0] || responseCheck == "look at " + obj7[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj7[1] + "</li>";
-	} else if(responseCheck == "look " + obj8[0] || responseCheck == "look at the " + obj8[0] || responseCheck == "look at " + obj8[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj8[1] + "</li>";
-	} else if(responseCheck == "look " + obj9[0] || responseCheck == "look at the " + obj9[0] || responseCheck == "look at " + obj9[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj9[1] + "</li>";
-	} else if(responseCheck == "look " + obj10[0] || responseCheck == "look at the " + obj10[0] || responseCheck == "look at " + obj10[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj10[1] + "</li>";
-	} else if(responseCheck == "look " + obj11[0] || responseCheck == "look at the " + obj11[0] || responseCheck == "look at " + obj11[0]) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj11[1] + "</li>";
+	} 
+	// else if(responseCheck == "look " + obj1[0] || responseCheck == "look at the " + obj1[0] || responseCheck == "look at " + obj1[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj1[1] + "</li>";	
+	// } else if(responseCheck == "look " + obj2[0] || responseCheck == "look at the " + obj2[0] || responseCheck == "look at " + obj2[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj2[1] + "</li>";
+	// } else if(responseCheck == "look " + obj3[0] || responseCheck == "look at the " + obj3[0] || responseCheck == "look at " + obj3[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj3[1] + "</li>";
+	// } else if(responseCheck == "look " + obj4[0] || responseCheck == "look at the " + obj4[0] || responseCheck == "look at " + obj4[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj4[1] + "</li>";
+	// } else if(responseCheck == "look " + obj5[0] || responseCheck == "look at the " + obj5[0] || responseCheck == "look at " + obj5[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj5[1] + "</li>";
+	// } else if(responseCheck == "look " + obj6[0] || responseCheck == "look at the " + obj6[0] || responseCheck == "look at " + obj6[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj6[1] + "</li>";
+	// } else if(responseCheck == "look " + obj7[0] || responseCheck == "look at the " + obj7[0] || responseCheck == "look at " + obj7[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj7[1] + "</li>";
+	// } else if(responseCheck == "look " + obj8[0] || responseCheck == "look at the " + obj8[0] || responseCheck == "look at " + obj8[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj8[1] + "</li>";
+	// } else if(responseCheck == "look " + obj9[0] || responseCheck == "look at the " + obj9[0] || responseCheck == "look at " + obj9[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj9[1] + "</li>";
+	// } else if(responseCheck == "look " + obj10[0] || responseCheck == "look at the " + obj10[0] || responseCheck == "look at " + obj10[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj10[1] + "</li>";
+	// } else if(responseCheck == "look " + obj11[0] || responseCheck == "look at the " + obj11[0] || responseCheck == "look at " + obj11[0]) {
+	// 	document.getElementById("game-text").innerHTML = gameText + "<li>" + obj11[1] + "</li>";
 
 
 
 
-	} else if(responseCheck == "use " + obj1[0] || responseCheck == "use the " + obj1[0]) {
+	// } 
+	else if(responseCheck == "use " + obj1[0] || responseCheck == "use the " + obj1[0]) {
 		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj1[2] + "</li>";
 	} else if(responseCheck == "use " + obj2[0] || responseCheck == "use the " + obj2[0]) {
 		document.getElementById("game-text").innerHTML = gameText + "<li>" + obj2[2] + "</li>";
@@ -277,6 +279,7 @@ newResponse = function() {
 	}else {
 		document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
 	}		
+	lookResponse();
 	
 }
 
