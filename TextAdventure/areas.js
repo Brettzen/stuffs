@@ -31,7 +31,7 @@ unknownResponse = "I don't understand. What is it you're wanting to do?";
 update = function() {
 	console.log('update');
 	if(currentArea = "krisRoom") {
-		lookText = "You <span class='commands'>look</span> around the small room. You see two child-sized <span class='objects'>beds</span> in very poor condition. One is yours. The other has been empty for as long as you can remember. All the walls are bare, save for one small <span class='objects'>window</span> and a single framed <span class='objects'>portrait</span> of a large and rather stern looking woman.The <span class='objects'>floor</span> creaks lightly as you shift your feet.";	
+		lookText = "You <span class='commands'>look</span> around the small, parsely furnished room. You see two child-sized <span class='objects'>beds</span> in very poor condition. Across the room is a <span class='objects'>door</span> leading to the hallway. All the walls are bare, save for one small <span class='objects'>window</span> and a single framed <span class='objects'>portrait</span> of a large and rather stern looking woman. The <span class='objects'>floor</span> creaks lightly as you shift your feet.";	
 		obj1 = [
 			"beds", 
 			"You see two child-sized <span class='objects'>beds</span>. They are in very, VERY poor condition. One is yours. The other has been empty for as long as you can remember.",
