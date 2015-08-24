@@ -5,7 +5,7 @@ var person3;
 var person4;
 var person5;
 var obj = [
-	1,2,3,4,5,6,7,8,9,10
+	1,2,3,4,5,6,7,8,9,10,11
 ];
 var obj1;
 var obj2;
