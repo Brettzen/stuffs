@@ -24,6 +24,27 @@ searchResponse = function() {
 				if(objSearch != -1) {
 					console.log(object + " found. Attempting to " + command + " it.")
 					document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
+					if(event3 && object == "door" && command == "open" || event3 && object == "door" && command == "use") {
+						advanceStoryline();
+						resetEvents();
+						update();	
+					}
+					if(object == "loose board" && command == "move" || object == "loose board" && command == "open") {
+						event1 = true;
+						update();
+					}
+					if(object == "portrait" && command == "move") {
+						event2 = true;
+						update();
+					}
+					if(object == "bokken" && command == "get") {
+						getBokken = true;
+						update();
+					}
+					if(object == "pin" && command == "get") {
+						getPin = true;
+						update();
+					}
 					break;
 				} else {
 					console.log('unable to find ' + object + ' to ' + command + '.');
