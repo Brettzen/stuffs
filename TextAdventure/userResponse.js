@@ -1,20 +1,58 @@
 var lookTerms = [
 	"look ",
-	"look at ",
+	"inspect",
+	"search"
 ];
+var commandTerms = [
+	"look",
+	"use",
+	"open",
+	"get",
+	"move"
+]
+
+searchResponse = function() {
+	for(i=0; i < commandTerms.length; i++) {
+		var command = commandTerms[i];
+		var commandSearch = userResponse.search(command);
+		console.log('searching for ' + command + '...');
+		if(commandSearch != -1) {
+			for(j=1; j < obj.length; j++) {
+				var object = obj[j][0];
+				var objSearch = userResponse.search(object);
+				console.log("Searching for " + object + "...");
+				if(objSearch != -1) {
+					console.log(object + " found. Attempting to " + command + " it.")
+					document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
+					break;
+				} else {
+					console.log('unable to find ' + object + ' to ' + command + '.');
+				}
+			}
+			break;
+		} else {
+			console.log('unable to find ' + command + '.');
+		}
+	}
+}
 
 lookResponse = function() {
-	for(i=1; i < obj.length; i++) {
-		console.log('searching for ' + obj[i][0] + '...');
-		if(userResponse == "look " + obj[i][0] || userResponse == "look at " + obj[i][0] || userResponse == "look at the " + obj[i][0]) {
-			console.log(obj[i][0] + ' found. Printing description.');
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][1] + "</li>";
-			break;
+	var commandSearch = userResponse.search('look');
+	if(commandSearch != -1) {
+		for(i=1; i < obj.length; i++) {
+			var objSearch = userResponse.search(obj[i][0]);
+			console.log('searching for ' + obj[i][0] + '...');
+			if(objSearch != -1) {
+				console.log(obj[i][0] + ' found. Printing description.');
+				document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][1] + "</li>";
+				break;
+			}
 		}
 	}
 }
 
 useResponse = function() {
+	var commandSearch = userResponse.search('use');
 	for(i=1; i < obj.length; i++) {
 		console.log('searching for ' + obj[i][0] + '...');
 		if(userResponse == "use " + obj[i][0] || userResponse == "use the " + obj[i][0]) {
@@ -31,44 +69,52 @@ useResponse = function() {
 }
 
 openResponse = function() {
-	for(i=1; i < obj.length; i++) {
-		console.log('searching for ' + obj[i][0] + '...');
-		if(userResponse == "open " + obj[i][0] || userResponse == "open the " + obj[i][0]) {
-			console.log(obj[i][0] + ' found. Printing description.');
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][3] + "</li>";
-			if(event3 && obj3[0] == "door") {
-				advanceStoryline();
-				resetEvents();
-				update();	
+	var commandSearch = userResponse.search('open');
+	if(commandSearch != -1) {
+		for(i=1; i < obj.length; i++) {
+			var objSearch = userResponse.search(obj[i][0])
+			console.log('searching for ' + obj[i][0] + '...');
+			if(objSearch != -1) {
+				console.log(obj[i][0] + ' found. Printing description.');
+				document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][3] + "</li>";
+				if(event3 && obj3[0] == "door") {
+					advanceStoryline();
+					resetEvents();
+					update();	
+				}
+				if(obj7[0] == "loose board") {
+					event1 = true;
+					update();
+				}
+				break;
 			}
-			if(obj7[0] == "loose board") {
-				event1 = true;
-				update();
-			}
-			break;
 		}
 	}
 }
 
 getResponse = function() {
-	for(i=1; i < obj.length; i++) {
-		console.log('searching for ' + obj[i][0] + '...');
-		if(responseCheck == "get " + obj[i][0] || responseCheck == "get the " + obj[i][0] || responseCheck == "grab " + obj[i][0] || responseCheck == "grab the " + obj[i][0] || responseCheck == "pick up " + obj[i][0] || responseCheck == "pick up the " + obj[i][0] || responseCheck == "take " + obj[i][0] || responseCheck == "take the " + obj[i][0]) {
-			console.log(obj[i][0] + ' found. Printing description.');
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][4] + "</li>";
-			if(obj5[0] == "bokken") {
-				getBokken = true;
-				update();
+	var commandSearch = userResponse.search('get');
+	if(commandSearch != -1) {
+		for(i=1; i < obj.length; i++) {
+			var objSearch = userResponse.search(obj[i][0])
+			console.log('searching for ' + obj[i][0] + '...');
+			if(objSearch != -1) {
+				console.log(obj[i][0] + ' found. Printing description.');
+				document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][4] + "</li>";
+				if(obj5[0] == "bokken") {
+					getBokken = true;
+					update();
+				}
+				if(obj7[0] == "loose board") {
+					event1 = true;
+					update();
+				}
+				if(obj11[0] == "pin") {
+					getPin = true;
+					update();
+				}
+				break;
 			}
-			if(obj7[0] == "loose board") {
-				event1 = true;
-				update();
-			}
-			if(obj11[0] == "pin") {
-				getPin = true;
-				update();
-			}
-			break;
 		}
 	}
 }
