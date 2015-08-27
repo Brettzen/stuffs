@@ -100,11 +100,6 @@ newResponse = function() {
 	else {
 		document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
 	}		
-	// lookResponse();
-	// useResponse();
-	// openResponse();
-	// getResponse();
-	// moveResponse();
 	searchResponse();
 }
 
