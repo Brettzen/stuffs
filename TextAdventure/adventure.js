@@ -59,7 +59,7 @@ newResponse = function() {
 		document.getElementById("game-text").innerHTML = gameText + "<li>Quitting is for babies, little girls, and men who've just had their ears ripped off. Do you fit into one of these categories?</li>";
 	} else if(responseCheck == "help") {
 		if(!helpSwitch) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>You can interact with this world by typing commands such as <span class='commands'>look</span>, <span class='commands'>use</span>, <span class='commands'>open</span>, <span class='commands'>get</span>, or <span class='commands'>move</span>. You can also direct these commands towards <span class='objects'>objects</span> or <span class='items'>items</span>.</li>";
+		document.getElementById("game-text").innerHTML = gameText + "<li>You can interact with this world by typing commands such as <span class='commands'>look</span>, <span class='commands'>use</span>, <span class='commands'>open</span>, <span class='commands'>get</span>, or <span class='commands'>move</span>. You can also direct these commands towards <span class='objects'>objects</span> and <span class='items'>items</span>.</li>";
 		helpSwitch = true;
 		} else { 
 		document.getElementById("game-text").innerHTML = gameText + "<li>There is no helping you, you miserable, vomitous mass.</li>";
@@ -96,20 +96,8 @@ newResponse = function() {
 		} else {
 			document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
 		}
-	} else if(responseCheck == "use pin in keyhole" || responseCheck == "use the pin in keyhole" || responseCheck == "use pin in the keyhole" || responseCheck == "use the pin in the keyhole" || responseCheck == "use pin on keyhole" || responseCheck == "use the pin on keyhole" || responseCheck == "use pin on the keyhole" || responseCheck == "use the pin on the keyhole") {
-		if(!event3) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>You insert the pin into the keyhole. After a few minutes of adpet maneuvering, you feel the tumblers slide in place. The door has been unlocked!</li>";
-			event3 = true;
-			update();
-		} else if(!event4) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>You masterfully relock the door and then break your pin. Well done.</li>";
-			event4 = true;
-			update();
-		} else {
-			document.getElementById("game-text").innerHTML = gameText + "<li>You no longer have the pin. You broke it. It's dead.</li>";
-			update();
-		}
-	}else {
+	} 
+	else {
 		document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
 	}		
 	// lookResponse();
@@ -142,5 +130,6 @@ resetEvents = function() {
 	event7 = false;
 	event8 = false;
 	event9 = false;
-}
 	event10 = false;
+}
+	

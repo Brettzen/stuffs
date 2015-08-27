@@ -14,22 +14,58 @@ var commandTerms = [
 searchResponse = function() {
 	for(i=0; i < commandTerms.length; i++) {
 		var command = commandTerms[i];
-		var commandSearch = userResponse.search(command);
-		console.log('searching for ' + command + '...');
+		var commandSearch = responseCheck.search(command);
+		// console.log('searching for ' + command + '...');
 		if(commandSearch != -1) {
+			console.log('found ' + command + '.');
 			for(j=1; j < obj.length; j++) {
 				var object = obj[j][0];
-				var objSearch = userResponse.search(object);
-				console.log("Searching for " + object + "...");
+				var objSearch = responseCheck.search(object);
+				// console.log("Searching for " + object + "...");
 				if(objSearch != -1) {
-					console.log(object + " found. Attempting to " + command + " it.")
-					document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
+					if(command == 'use') {
+						console.log(object + ' found. Searching for an item to manipulate ' + object + '...');
+						for(k=0; k < items.length; k++) {
+							var item = items[k].name;
+							var itemSearch = responseCheck.search(item);
+							if(itemSearch != -1 && object != item) {
+								console.log(item + ' found. Checking for relevant events...');
+								if(getPin && object == 'keyhole' && item == 'pin' && currentArea == 'krisRoom') {
+									if(!event3) {
+										console.log('pre unlock text');
+										document.getElementById("game-text").innerHTML = gameText + "<li>You insert the pin into the keyhole. After a few minutes of adept maneuvering, you feel the tumblers slide in place. The door has been unlocked!</li>";
+										event3 = true;
+										console.log('post unlock text');
+										update();
+										break;
+									} else if(!event4) {
+										document.getElementById("game-text").innerHTML = gameText + "<li>You masterfully relock the door and then break your pin. Well done.</li>";
+										event4 = true;
+										update();
+										break;
+									} else {
+										document.getElementById("game-text").innerHTML = gameText + "<li>You no longer have the pin. You broke it. It's dead.</li>";
+										update();
+										break;
+									}
+								break;
+								}
+							break;
+							} else {
+								console.log('No items found.');
+								document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
+							}
+						}
+					} else {
+						console.log(object + " found. Attempting to " + command + " it.");
+						document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
+					}
 					if(event3 && object == "door" && command == "open" || event3 && object == "door" && command == "use") {
 						advanceStoryline();
 						resetEvents();
 						update();	
 					}
-					if(object == "loose board" && command == "move" || object == "loose board" && command == "open") {
+					if(object == "loose board" && command == "move" || object == "loose board" && command == "open" || object == "loose board" && command == "get") {
 						event1 = true;
 						update();
 					}
@@ -46,9 +82,7 @@ searchResponse = function() {
 						update();
 					}
 					break;
-				} else {
-					console.log('unable to find ' + object + ' to ' + command + '.');
-				}
+				} 
 			}
 			break;
 		} else {
@@ -58,10 +92,10 @@ searchResponse = function() {
 }
 
 lookResponse = function() {
-	var commandSearch = userResponse.search('look');
+	var commandSearch = responseCheck.search('look');
 	if(commandSearch != -1) {
 		for(i=1; i < obj.length; i++) {
-			var objSearch = userResponse.search(obj[i][0]);
+			var objSearch = responseCheck.search(obj[i][0]);
 			console.log('searching for ' + obj[i][0] + '...');
 			if(objSearch != -1) {
 				console.log(obj[i][0] + ' found. Printing description.');
@@ -73,10 +107,10 @@ lookResponse = function() {
 }
 
 useResponse = function() {
-	var commandSearch = userResponse.search('use');
+	var commandSearch = responseCheck.search('use');
 	for(i=1; i < obj.length; i++) {
 		console.log('searching for ' + obj[i][0] + '...');
-		if(userResponse == "use " + obj[i][0] || userResponse == "use the " + obj[i][0]) {
+		if(responseCheck == "use " + obj[i][0] || responseCheck == "use the " + obj[i][0]) {
 			console.log(obj[i][0] + ' found. Printing description.');
 			document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[i][2] + "</li>";
 			if(event3 && obj3[0] == "door") {
@@ -90,10 +124,10 @@ useResponse = function() {
 }
 
 openResponse = function() {
-	var commandSearch = userResponse.search('open');
+	var commandSearch = responseCheck.search('open');
 	if(commandSearch != -1) {
 		for(i=1; i < obj.length; i++) {
-			var objSearch = userResponse.search(obj[i][0])
+			var objSearch = responseCheck.search(obj[i][0])
 			console.log('searching for ' + obj[i][0] + '...');
 			if(objSearch != -1) {
 				console.log(obj[i][0] + ' found. Printing description.');
@@ -114,10 +148,10 @@ openResponse = function() {
 }
 
 getResponse = function() {
-	var commandSearch = userResponse.search('get');
+	var commandSearch = responseCheck.search('get');
 	if(commandSearch != -1) {
 		for(i=1; i < obj.length; i++) {
-			var objSearch = userResponse.search(obj[i][0])
+			var objSearch = responseCheck.search(obj[i][0])
 			console.log('searching for ' + obj[i][0] + '...');
 			if(objSearch != -1) {
 				console.log(obj[i][0] + ' found. Printing description.');
