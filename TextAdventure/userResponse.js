@@ -1,29 +1,64 @@
 var lookTerms = [
-	"look ",
-	"inspect",
-	"search"
-];
-var commandTerms = [
 	"look",
+	"inspect",
+	"search",
+	"glance",
+	"view",
+	"observe",
+	"spy",
+	"check out"
+];
+var useTerms = [
 	"use",
+	"operate",
+	"insert"
+];
+var openTerms = [
 	"open",
+	"reveal"
+];
+var getTerms = [
 	"get",
-	"move"
+	"pick up",
+	"take",
+	"grab"
+];
+var moveTerms = [
+	"move",
+	"push",
+	"pull",
+	"lift",
+	"shove",
+	"nudge"
+];
+
+var commandTerms = [
+	lookTerms,
+	useTerms,
+	openTerms,
+	getTerms,
+	moveTerms
 ]
 
 searchResponse = function() {
 	if(responseCheck != "") {
 		for(i=0; i < commandTerms.length; i++) {
-			console.log("i: " + i + ", commandTerms: " + commandTerms.length);
-			var command = commandTerms[i];
-			var commandSearch = responseCheck.search(command);
-			// console.log('searching for ' + command + '...');
+			var commandSection = commandTerms[i];
+			var command;
+			for(a=0; a < commandSection.length; a++) {
+				command = commandSection[a];
+				console.log("searching for " + command);
+				var commandSearch = responseCheck.search(command);
+				if(commandSearch != -1) {
+					command = commandSection[a];
+					break;
+				}
+			}
 			if(commandSearch != -1) {
 				console.log('found ' + command + '.');
 				for(j=1; j < obj.length; j++) {
 					var object = obj[j][0];
 					var objSearch = responseCheck.search(object);
-					// console.log("Searching for " + object + "...");
 					if(objSearch != -1) {
 						if(command == 'use') {
 							console.log(object + ' found. Searching for an item to manipulate ' + object + '...');
@@ -60,25 +95,29 @@ searchResponse = function() {
 							console.log(object + " found. Attempting to " + command + " it.");
 							document.getElementById("game-text").innerHTML = gameText + "<li>" + obj[j][i+1] + "</li>";
 						}
-						if(event3 && object == "door" && command == "open" || event3 && object == "door" && command == "use") {
-							advanceStoryline();
-							resetEvents();
-							update();	
+						if(event3 && object == "door" && currentArea == "krisRoom") {
+							if(command == openTerms[a] || command == useTerms[a]) {
+								advanceStoryline();
+								resetEvents();
+								update();	
+							}
 						}
-						if(object == "loose board" && command == "move" || object == "loose board" && command == "open" || object == "loose board" && command == "get") {
-							event1 = true;
-							update();
+						if(object == "loose board") {
+							if(command == moveTerms[a] || command == openTerms[a] || command == getTerms[a]) {
+								event1 = true;
+								update();
+							}
 						}
-						if(object == "portrait" && command == "move") {
+						if(object == "portrait" && command == moveTerms[a]) {
 							event2 = true;
 							update();
 						}
-						if(object == "bokken" && command == "get") {
+						if(object == "bokken" && command == getTerms[a]) {
 							items[0].name = "bokken";
 							getBokken = true;
 							update();
 						}
-						if(object == "pin" && command == "get") {
+						if(object == "pin" && command == getTerms[a]) {
 							items[1].name = "pin";
 							getPin = true;
 							update();
@@ -91,11 +130,11 @@ searchResponse = function() {
 							var itemSearch = responseCheck.search(item);
 							if(itemSearch != -1) {
 								console.log(command);
-								if(command == "look") {
+								if(command == lookTerms[a]) {
 									document.getElementById("game-text").innerHTML = gameText + "<li>" + items[l].description + "</li>";
 									break;
 								}
-								else if(command =="use") {
+								else if(command == useTerms[a]) {
 									document.getElementById("game-text").innerHTML = gameText + "<li>" + items[l].use + "</li>";
 									break;
 								} else {
@@ -103,7 +142,7 @@ searchResponse = function() {
 								}
 							} else if(itemSearch == -1 && l == items.length -1) {
 								console.log('no items found either.');
-								if(responseCheck == "look") {
+								if(responseCheck == lookTerms[a] || responseCheck == lookTerms[a] + " around" || responseCheck == lookTerms[a] + " the perimeter" ||  responseCheck == lookTerms[a] + " room" || responseCheck == lookTerms[a] + " the area" || responseCheck == lookTerms[a] + " the room" ||  responseCheck == lookTerms[a] + " area" || responseCheck == lookTerms[a] + " perimeter") {
 									document.getElementById("game-text").innerHTML = gameText + "<li>" + lookText + "</li>";
 								} else {
 									miscResponses();
@@ -113,7 +152,7 @@ searchResponse = function() {
 					}
 				}
 				break;
-			} else if(commandSearch == -1 && i == commandTerms.length - 1) {
+			} else if(commandSearch == -1 && i == commandTerms[i].length - 1) {
 				console.log('unable to find any commands.');
 				miscResponses();
 			}
@@ -124,7 +163,7 @@ searchResponse = function() {
 }
 
 miscResponses = function() {
-	if(responseCheck == "quit" || responseCheck == "end") {
+	if(responseCheck == "quit" || responseCheck == "end" || responseCheck == "give up") {
 		document.getElementById("game-text").innerHTML = gameText + "<li>Quitting is for babies, little girls, and men who've just had their ears ripped off. Do you fit into one of these categories?</li>";
 	} else if(responseCheck == "help") {
 		if(!helpSwitch) {

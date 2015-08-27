@@ -33,7 +33,7 @@ var noGet;
 //0.Object, 1.Look, 2.Use, 3.Open, 4.Get, 5. Move
 
 unknownResponse = "I don't understand. What is it you're wanting to do?";
-noMove = "You can't move that";
+noMove = "You can't move that.";
 noGet = "You can't get that.";
 stopThat = "I said that's all! Knock it off!!";
 
