@@ -4,7 +4,7 @@ advanceStoryline = function() {
 	if(plotVar == 0) {
 		currentArea = "krisRoom";
 		document.getElementById("game-text").innerHTML = gameText + "<li>" + userName + " , eh.... Very well, " + userName + "!</li>";
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + userName + " , eh.... Very well, " + userName + "!</li><li>~</li><li>~</li><li>~</li><li>You wake up to rays of light shining upon your face, peeking at you through the tattered curtains of your bedroom window. You slowly sit up and attempt the rub the sleep from your eyes. With a stretch and a yawn, you get out of your bed and lightly step on the cold, wooden floor. The floor lightly creaks underneath your weight.</li>";
+		document.getElementById("game-text").innerHTML = gameText + "<li>" + userName + " , eh.... Very well, " + userName + "!</li><li>~</li><li>~</li><li>~</li><li>You wake up to rays of light shining upon your face, peeking at you through the tattered curtains of your bedroom window. You slowly sit up and attempt to rub the sleep from your eyes. With a stretch and a yawn, you get out of your bed and lightly step out onto the cold, wooden floor. The floor lightly creaks underneath your weight.</li>";
 		plotVar++;
 		update();
 		console.log('Current Area: ' + currentArea + ". Plot Variable: " + plotVar + ".");
