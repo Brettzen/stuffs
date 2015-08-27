@@ -22,10 +22,10 @@ public class Deck {
 
 	public static List<String> shuffle() {
 		final List<String> deck = getDeck();
-		final List<Integer> firstHalf = new ArrayList<>();
 		final List<Integer> secondHalf = new ArrayList<>();
 		final List<String> reshuffledDeck = new ArrayList<>();
 
+		final List<Integer> firstHalf = deck.forEach((card) -> firstHalf.add(deck.indexOf(card))).collect(Collectors.toList());
 		for (int i = 0; i <= 51; i++) {
 			if (i < 26) {
 				firstHalf.add(i);

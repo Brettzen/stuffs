@@ -5,7 +5,7 @@ import shuffler.Deck;
 import java.util.List;
 
 public class Pickacard {
-	public void cardPicker() {
+	public static void cardPicker() {
 
 		List fullDeck = Deck.shuffle();
 
