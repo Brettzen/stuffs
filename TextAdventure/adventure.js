@@ -51,55 +51,6 @@ inputCode = function(resp) {
 	console.log(resp);
 	userResponse = resp;
 	updateText();
-	newResponse();
-}
-
-newResponse = function() {
-	if(responseCheck == "quit" || responseCheck == "end") {
-		document.getElementById("game-text").innerHTML = gameText + "<li>Quitting is for babies, little girls, and men who've just had their ears ripped off. Do you fit into one of these categories?</li>";
-	} else if(responseCheck == "help") {
-		if(!helpSwitch) {
-		document.getElementById("game-text").innerHTML = gameText + "<li>You can interact with this world by typing commands such as <span class='commands'>look</span>, <span class='commands'>use</span>, <span class='commands'>open</span>, <span class='commands'>get</span>, or <span class='commands'>move</span>. You can also direct these commands towards <span class='objects'>objects</span> and <span class='items'>items</span>.</li>";
-		helpSwitch = true;
-		} else { 
-		document.getElementById("game-text").innerHTML = gameText + "<li>There is no helping you, you miserable, vomitous mass.</li>";
-		helpSwitch = false;
-		}
-	} else if(responseCheck == "look") {
-		document.getElementById("game-text").innerHTML = gameText + "<li>" + lookText + "</li>";
-	} else if(responseCheck == "what" || responseCheck == "repeat" || responseCheck == "what did you say" || responseCheck == "what did you say?" || responseCheck == "say again") {
-		console.log('repeated');
-		repeatText();
-	} else if(responseCheck == "") {
-	
-	} else if(responseCheck == "look bokken") {
-		if(getBokken) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + bokken["description"] + "</li>";
-		} else {
-			document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
-		}
-	} else if(responseCheck == "use bokken") {
-		if(getBokken) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + bokken["use"] + "</li>";
-		} else {
-			document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
-		}
-	} else if(responseCheck == "look pin") {
-		if(getPin) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + pin["description"] + "</li>";
-		} else {
-			document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
-		}
-	} else if(responseCheck == "use pin") {
-		if(getPin) {
-			document.getElementById("game-text").innerHTML = gameText + "<li>" + pin["use"] + "</li>";
-		} else {
-			document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
-		}
-	} 
-	else {
-		document.getElementById("game-text").innerHTML = gameText + "<li>I haven't any idea what you're talking about, " + userName + ". Mayhaps you could try asking for <span class='commands'>help</span> and I could assist you better?</li>";
-	}		
 	searchResponse();
 }
 

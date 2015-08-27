@@ -58,7 +58,7 @@ update = function() {
 			noGet,
 			unknownResponse
 		];
-		if(event3) {
+		if(event3 && !event4) {
 			obj[3] = [
 				"door",
 				"You look at the door. It is, like everything else, old. The door is now unlocked.",
@@ -155,7 +155,7 @@ update = function() {
 			unknownResponse,
 			"The <span class='objects'>bars</span> don't open. Nice try.",
 			noGet,
-			"Mustering all of your strength, you grab hold of the iron <span class='objects'>bars</span> and violently pull. You fall backwards, landing with a thud on the dusty ground. The <span class='objects'>bars</span> are still holding strong to the window, however they now know not to mess with you, lest they incur your mighty wrath. Well done!"
+			"Mustering all of your strength, you grab hold of the iron <span class='objects'>bars</span> and violently pull. You lose your grip and fall backwards, landing with a thud on the dusty ground. The <span class='objects'>bars</span> are still holding strong to the window, however they now know not to mess with you, lest they incur your mighty wrath. Well done!"
 		];
 		if(!getPin) {
 			obj[10] = [
