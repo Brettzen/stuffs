@@ -18,9 +18,10 @@ var canvas = document.getElementById("canvas");
 var robotMasters1 = new Image();
 robotMasters1.src = "res/robot-masters-1.png";
 
+
 function sprite(options) {
 	var that = {},
-		frameIndex = 0,
+		frameIndex = Math.ceil(Math.random() * (0, 6) - 1),
 		tickCount = 0,
 		ticksPerFrame = 0;
 		numberOfFrames = options.numberOfFrames || 1;
@@ -30,7 +31,10 @@ function sprite(options) {
 	that.height = options.height;
 	that.image = options.image;
 	that.loop = options.loop;
-
+	that.x = options.x;
+	that.y = options.y;
+	that.scale = options.scale;
+	console.log(frameIndex);
 	that.render = function() {
 
 		// Clear the canvas
@@ -42,10 +46,10 @@ function sprite(options) {
 			0,
 			that.width / numberOfFrames,
 			that.height,
-			0,
-			0,
-			that.width / numberOfFrames,
-			that.height
+			that.x,
+			that.y,
+			that.width / numberOfFrames * that.scale,
+			that.height * that.scale
 		);	
 	};
 

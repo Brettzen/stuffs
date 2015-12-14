@@ -5,6 +5,9 @@ var icon1 = sprite({
 	context: canvas.getContext('2d'),
 	width: 810,
 	height: 135,
+	x: 10,
+	y: 10,
+	scale: 1.5,
 	image: robotMasters1,
 	numberOfFrames: 6,
 	ticksPerFrame: 4
@@ -13,7 +16,7 @@ var icon1 = sprite({
 function gameLoop() {
 	window.requestAnimationFrame(gameLoop);
 
-	icon1.update();
+	// icon1.update();
 	icon1.render();
 };
 
