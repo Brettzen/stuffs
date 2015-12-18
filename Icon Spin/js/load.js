@@ -1,0 +1,1 @@
+robotMasters1.addEventListener("load", init);
