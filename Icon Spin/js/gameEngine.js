@@ -3,12 +3,14 @@ var context = canvas.getContext('2d');
 
 var robotMasters1 = new Image();
 robotMasters1.src = 'res/robot-masters-1.png';
+robotMasters1.robot = ["Cut Man", "Guts Man", "Ice Man", "Bomb Man", "Fire Man", "Elec Man"];
 var spinButton = new Image();
 spinButton.src = 'res/SpinButton.png';
 
 var spin;
+var theFrame; 
 
-function Sprite(url,width,height,x,y,scale,totalFrames, randomSprite) {
+function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 	this.url = url;
 	this.width = width;
 	this.height = height;
@@ -17,13 +19,16 @@ function Sprite(url,width,height,x,y,scale,totalFrames, randomSprite) {
 	this.scale = scale || 1;
 	this.totalFrames = totalFrames;
 	this.randomSprite = randomSprite || false;
+	this.frame = 0;
 
 	var currentFrame;
 		if(this.randomSprite) {
-			currentFrame = Math.ceil(Math.random() * (0, this.totalFrames) - 1);
-			// console.log(currentFrame);
+			currentFrame = Math.floor(Math.random() * (0, this.totalFrames));
+			theFrame = currentFrame;
+			console.log(theFrame);
 		} else {
 			currentFrame = 0;
+			theFrame = currentFrame;
 		}
 	
 	this.render = function() {
@@ -58,9 +63,9 @@ function init() {
 };
 
 function renderGraphics() {
-	for(var i = 0; i < icons.length; i++) {
-		icons[i].sprite.render();
-		// console.log(icons[i].name + " loaded.");
+	for(var i = 0; i < graphics.length; i++) {
+		graphics[i].sprite.render();
+		// console.log(graphics[i].name + " loaded.");
 	};
 	spinButton.render();
 }
