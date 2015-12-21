@@ -24,5 +24,4 @@ canvas.addEventListener('click', function(e) {
 	}
 
 
-
 });
