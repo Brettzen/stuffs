@@ -7,9 +7,10 @@ robotMasters1.robot = ["Cut Man", "Guts Man", "Ice Man", "Bomb Man", "Fire Man",
 var spinButton = new Image();
 spinButton.src = 'res/SpinButton.png';
 
-var spin; 
+var spinning = false;
+var frameCount = 0; 
 
-function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
+function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,currentFrame) {
 	this.url = url;
 	this.width = width;
 	this.height = height;
@@ -18,19 +19,12 @@ function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 	this.scale = scale || 1;
 	this.totalFrames = totalFrames;
 	this.randomSprite = randomSprite || false;
-	
-
-	var currentFrame;
-		if(this.randomSprite) {
-			currentFrame = Math.floor(Math.random() * (0, this.totalFrames));
-			theFrame = currentFrame;
-			console.log(theFrame);
-		} else {
-			currentFrame = 0;
-			theFrame = currentFrame;
-		}
-	
-	this.frame = currentFrame;
+	//currentFrame:
+	if(this.randomSprite) {
+		this.currentFrame = Math.floor(Math.random() * (0, this.totalFrames));
+	} else {
+		this.currentFrame = 0;
+	}
 
 	this.render = function() {
 
@@ -39,7 +33,7 @@ function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 
 		context.drawImage(
 			this.url,
-			currentFrame * this.width / this.totalFrames,
+			this.currentFrame * this.width / this.totalFrames,
 			0,
 			this.width / this.totalFrames,
 			this.height,
@@ -53,7 +47,16 @@ function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 }
 
 function spin() {
-	
+	console.log("Spinning!")
+	for(i=0; i < graphics.length - 1; i++);
+		console.log(i);
+		if(graphics[i].sprite.currentFrame < graphics[i].sprite.totalFrames) {
+			graphics[i].sprite.currentFrame++;
+		} else {
+			graphics[i].sprite.currentFrame = 0;
+			
+		}
+		
 }
 
 
@@ -70,4 +73,3 @@ function renderGraphics() {
 	};
 	spinButton.render();
 }
-

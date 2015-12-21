@@ -13,10 +13,12 @@ canvas.addEventListener('click', function(e) {
 			// console.log("Current Logistics: " + graphics[i].sprite.x + "," + graphics[i].sprite.y + "," + graphics[i].sprite.width + "," + graphics[i].sprite.height + "," + graphics[i].sprite.scale);
 			if(graphics[i].sprite.url.robot) {
 				for(j=0;j<graphics[i].sprite.totalFrames;j++) {
-					if(j === graphics[i].sprite.frame) {
+					if(j === graphics[i].sprite.currentFrame) {
 						console.log("You clicked " + graphics[i].sprite.url.robot[j] + "!");
 					}
 				}
+			} else if(graphics[i].name === "Spin Button") {
+				spin();
 			} else {
 				console.log("You clicked " + graphics[i].name + "!")
 			}
