@@ -9,9 +9,9 @@ canvas.addEventListener('click', function(e) {
 	// }
 
 	for(i=0;i<graphics.length;i++) {
-		if(mouseX >= graphics[i].sprite.x && mouseX <= (graphics[i].sprite.x + graphics[i].sprite.width) && mouseY >= graphics[i].sprite.y && mouseY <= (graphics[i].sprite.y + (graphics[i].sprite.height * graphics[i].sprite.scale))) {
-			console.log("Current Logistics: " + graphics[i].sprite.x + "," + graphics[i].sprite.y + "," + graphics[i].sprite.width + "," + graphics[i].sprite.height + "," + graphics[i].sprite.scale);
-			if(graphics[i].sprite.url.robot != "") {
+		if(mouseX >= graphics[i].sprite.x && mouseX <= (graphics[i].sprite.x + graphics[i].sprite.width / graphics[i].sprite.totalFrames * graphics[i].sprite.scale) && mouseY >= graphics[i].sprite.y && mouseY <= (graphics[i].sprite.y + (graphics[i].sprite.height * graphics[i].sprite.scale))) {
+			// console.log("Current Logistics: " + graphics[i].sprite.x + "," + graphics[i].sprite.y + "," + graphics[i].sprite.width + "," + graphics[i].sprite.height + "," + graphics[i].sprite.scale);
+			if(graphics[i].sprite.url.robot) {
 				for(j=0;j<graphics[i].sprite.totalFrames;j++) {
 					if(j === graphics[i].sprite.frame) {
 						console.log("You clicked " + graphics[i].sprite.url.robot[j] + "!");

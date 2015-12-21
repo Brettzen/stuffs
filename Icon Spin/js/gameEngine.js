@@ -7,8 +7,7 @@ robotMasters1.robot = ["Cut Man", "Guts Man", "Ice Man", "Bomb Man", "Fire Man",
 var spinButton = new Image();
 spinButton.src = 'res/SpinButton.png';
 
-var spin;
-var theFrame; 
+var spin; 
 
 function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 	this.url = url;
@@ -19,7 +18,7 @@ function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 	this.scale = scale || 1;
 	this.totalFrames = totalFrames;
 	this.randomSprite = randomSprite || false;
-	this.frame = 0;
+	
 
 	var currentFrame;
 		if(this.randomSprite) {
@@ -31,6 +30,8 @@ function Sprite(url,width,height,x,y,scale,totalFrames,randomSprite,frame) {
 			theFrame = currentFrame;
 		}
 	
+	this.frame = currentFrame;
+
 	this.render = function() {
 
 		//Clear le Canvas
