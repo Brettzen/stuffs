@@ -2,15 +2,18 @@
 <html>
 <head>
 	<link rel="stylesheet" href="main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
-<body>
-	<div id="cat">
-		<img src="cat.jpg">
-		<div id="counter">
-			<p>Cat Clicks:  </p>
+<body ng-app="app">
+	<div ng-controller="CatController" id="cat">
+	 	<div id="cats" ng-repeat="cat in cats">
+	 		<p>{{cat.name}}</p>
+			<img ng-click="clicks = clicks + 1" ng-src="{{cat.src}}">
+			<div id="counter">
+				<p>Cat Clicks:  {{clicks || 0}}</p>
+			</div>
 		</div>
 	</div>
-	
 </body>
 <script type="text/javascript" src="app.js"></script>
 </html>
