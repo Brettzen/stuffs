@@ -1,0 +1,13 @@
+#cat {
+	text-align: center;
+	border: 2px solid black;
+	margin: 50px;
+}
+#cat img {
+	margin: 10px;
+	padding: 0;
+}
+#counter p {
+	font: 28px Verdana;
+	margin: 0 0 10px;
+}
