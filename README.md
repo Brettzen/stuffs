@@ -1,5 +1,8 @@
 This is a list of projects that I'm working on to help strengthen my coding skills. Below is a simple description of each project.
 
+# CatClicker
+A web app for clicking on a cat from the menu on the left to display it on the right. Keeps track of clicks. This was made with Angular.js.
+
 # FunFacts
 FunFacts is a basic trivia app for Android. It was created using Java with the Android SDK and Maven.
 
