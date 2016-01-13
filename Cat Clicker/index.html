@@ -5,18 +5,20 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
 <body ng-app="app">
-	<div id="catList" ng-controller="CatController">
-		<ul>
-			<li id="cats" ng-repeat="cat in cats">
-		 		<img ng-click="function(){currentCat = this.src}" ng-src="{{cat.src}}">
-			</li>
-		</ul>
-	</div>
-	<div id="catMain">
-		<p>{{cat.name}}</p>
-		<img ng-click="clicks = clicks + 1" ng-src="{{currentCat}}">
-		<div id="counter">
-			<p>Cat Clicks:  {{clicks || 0}}</p>
+	<div ng-controller="CatController">
+		<div id="catList">
+			<ul>
+				<li id="cats" ng-repeat="cat in cats" ng-click="catSelect(cat.name, cat.src)">
+			 		<img ng-src="{{cat.src}}">
+				</li>
+			</ul>
+		</div>
+		<div id="catMain">
+			<p>{{currentCat.name}}</p>
+			<img ng-click="clicks = clicks + 1" ng-hide="!currentCat.src" ng-src="{{currentCat.src}}">
+			<div id="counter">
+				<p>Cat Clicks:  {{clicks || 0}}</p>
+			</div>
 		</div>
 	</div>
 </body>

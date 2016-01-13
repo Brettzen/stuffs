@@ -10,6 +10,17 @@ app.controller('CatController', function($scope) {
 			"src": "cat2.jpg",
 		}
 	];
+
+	$scope.currentCat = {};
+
+	$scope.catSelect = function(name, src) {
+		$scope.currentCat.name = name;
+		$scope.currentCat.src = src;
+
+		console.log(name + " " + src);
+		return $scope.currentCat;
+	}
+
 });
 
 elem = document.getElementById('cat');

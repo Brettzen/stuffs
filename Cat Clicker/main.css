@@ -5,6 +5,7 @@
 	margin: 0;
 	padding: 0 10px;
 	display: inline-block;
+	float: left;
 }
 #catMain {
 	text-align: center;
@@ -12,6 +13,10 @@
 	width: 60%;
 	margin: 50px;
 	display: inline-block;
+}
+#catMain img {
+	width: 75%;
+	border: 1px solid black;
 }
 #cats img {
 	margin: 2px 2px 0;
