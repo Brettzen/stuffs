@@ -5,13 +5,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 </head>
 <body ng-app="app">
-	<div ng-controller="CatController" id="cat">
-	 	<div id="cats" ng-repeat="cat in cats">
-	 		<p>{{cat.name}}</p>
-			<img ng-click="clicks = clicks + 1" ng-src="{{cat.src}}">
-			<div id="counter">
-				<p>Cat Clicks:  {{clicks || 0}}</p>
-			</div>
+	<div id="catList" ng-controller="CatController">
+		<ul>
+			<li id="cats" ng-repeat="cat in cats">
+		 		<img ng-click="function(){currentCat = this.src}" ng-src="{{cat.src}}">
+			</li>
+		</ul>
+	</div>
+	<div id="catMain">
+		<p>{{cat.name}}</p>
+		<img ng-click="clicks = clicks + 1" ng-src="{{currentCat}}">
+		<div id="counter">
+			<p>Cat Clicks:  {{clicks || 0}}</p>
 		</div>
 	</div>
 </body>

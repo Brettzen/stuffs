@@ -1,17 +1,33 @@
-#cat {
+#catList {
+	border-right: 2px solid #888;
+	border-bottom: 2px solid #888;
+	width: 20%;
+	margin: 0;
+	padding: 0 10px;
+	display: inline-block;
+}
+#catMain {
 	text-align: center;
 	border: 2px solid black;
+	width: 60%;
 	margin: 50px;
+	display: inline-block;
 }
-#cat img {
-	margin: 10px;
+#cats img {
+	margin: 2px 2px 0;
 	padding: 0;
-	width: 80%;
-	border: 3px solid black;
+	width: 100%;
 }
 #cats {
-	width: 50%;
-	display: inline-block;
+	width: 100%;
+	height: 50px;
+	display: block;
+	list-style: none;
+	overflow: hidden;
+}
+#catList ul {
+	padding: 0;
+	margin: 10px 0;
 }
 p {
 	font: 28px Verdana;
